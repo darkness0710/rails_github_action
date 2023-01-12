@@ -10,3 +10,4 @@ docker build .
 docker tag <image_id> darkness0710/ruby_mysql
 #
 docker push darkness0710/ruby_mysql
+#
