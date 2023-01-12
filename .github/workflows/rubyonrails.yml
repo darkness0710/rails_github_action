@@ -10,7 +10,7 @@ jobs:
     container:
       image: darkness0710/blog_ruby_mysql
       volumes: 
-         - ${{github.workspace}}:/var/www
+         - ${{github.workspace}}:/
     env:
       RAILS_ENV: test
     steps:
