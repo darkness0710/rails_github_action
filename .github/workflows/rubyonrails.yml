@@ -12,9 +12,10 @@ jobs:
     env:
       RAILS_ENV: test
     steps:
-      - name: Debug
-        run: echo "${GITHUB_WORKSPACE}"
-      - name: Set up database schema
-        run: bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
-        run: bundle exec rspec
+        with:
+          image: darkness0710/blog_ruby_mysql
+          options: -v ${{ github.workspace }}:/var/www
+          run: |
+            bundle install && bundle exec rake db:drop db:create db:migrate
+            bundle exec rspec
