@@ -4,12 +4,12 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-    
 jobs:
-  rspec:
-   runs-on: ubuntu-latest
-    container:
-      image: darkness0710/blog_ruby_mysql
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: darkness0710/blog_ruby_mysql
     env:
       RAILS_ENV: test
     steps:
