@@ -14,7 +14,13 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
-      - name: Set up database schema
-        run: bundle install && bundle exec rake db:drop db:create db:migrate
+      - name: Restart mysql service
+        run: service mysql restart
+      - name: Install gem
+        run: bundle install
+      - name: Migrate database
+        run: bundle exec rake db:drop db:create db:migrate
+      - name: Run rubocop
+        run: bundle exec rubocop
       - name: Run tests
         run: bundle exec rspec
