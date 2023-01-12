@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: darkness0710/blog_ruby_mysql
-      options: -v "$GITHUB_WORKSPACE":/var/www
+      options: -v {{ github.workspace }}:/var/www
     env:
       RAILS_ENV: test
     steps:
