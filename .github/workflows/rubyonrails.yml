@@ -1,0 +1,19 @@
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: blog_ruby_mysql
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Set up database schema
+        run: bundle install && bundle exec rake db:drop db:create db:migrate
+      - name: Run tests
+        run: bundle exec rspec
