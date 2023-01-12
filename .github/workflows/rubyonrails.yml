@@ -11,9 +11,9 @@ jobs:
       image: darkness0710/blog_ruby_mysql
       volumes: 
          - ${{github.workspace}}:/var/www
-    env:
-      RAILS_ENV: test
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
       - name: Set up database schema
         run: bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
