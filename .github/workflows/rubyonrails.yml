@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: blog_ruby_mysql
+        image: darkness0710/blog_ruby_mysql
     env:
       RAILS_ENV: test
     steps:
