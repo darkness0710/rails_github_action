@@ -13,6 +13,7 @@ jobs:
       RAILS_ENV: test
     steps:
       - name: Run tests
+        uses: addnab/docker-run-action@v3
         with:
           image: darkness0710/blog_ruby_mysql
           options: -v ${{ github.workspace }}:/var/www
