@@ -10,11 +10,13 @@ jobs:
     container:
       image: darkness0710/blog_ruby_mysql
       volumes: 
-         - ${{github.workspace}}:/
+         - ${{github.workspace}}:/var/www
     env:
       RAILS_ENV: test
     steps:
       - name: Set up database schema
-        run: cd /var/www && bundle install && bundle exec rake db:drop db:create db:migrate
+        working-directory: /var/www
+        run: bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
-        run: cd /var/www && bundle exec rspec
+        working-directory: /var/www
+        run: bundle exec rspec
