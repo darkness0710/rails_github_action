@@ -7,6 +7,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /var/www
     container:
         image: darkness0710/blog_ruby_mysql
     env:
