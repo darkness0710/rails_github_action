@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  ruby_mysql:
+    volumes:
+      - "./:/var/www/"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /var/www/
+    tty: true
