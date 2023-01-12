@@ -8,16 +8,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: darkness0710/blog_ruby_mysql
+      image: darkness0710/ruby_mysql
       volumes: 
-         - ${{github.workspace}}:/var/www
+         - ${{ github.workspace }}:/var/www
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
       - name: Restart mysql
         run: service mysql restart
-      - name: Debug
-        run: gem install rspec
       - name: Set up database schema
         run: bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
