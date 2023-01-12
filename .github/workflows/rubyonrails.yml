@@ -8,15 +8,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-        image: darkness0710/blog_ruby_mysql
+      image: darkness0710/blog_ruby_mysql
+      options: -v "$GITHUB_WORKSPACE":/var/www
     env:
       RAILS_ENV: test
     steps:
+      - name: Set up database schema
+        run: cd /var/www && bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
-        uses: addnab/docker-run-action@v3
-        with:
-          image: darkness0710/blog_ruby_mysql
-          options: -v ${{ github.workspace }}:/var/www
-          run: |
-            bundle install && bundle exec rake db:drop db:create db:migrate
-            bundle exec rspec
+        run: cd /var/www && bundle exec rspec
