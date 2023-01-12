@@ -15,8 +15,6 @@ jobs:
       RAILS_ENV: test
     steps:
       - name: Set up database schema
-        working-directory: /var/www
         run: bundle install && bundle exec rake db:drop db:create db:migrate
       - name: Run tests
-        working-directory: /var/www
         run: bundle exec rspec
